@@ -22,7 +22,7 @@
             bindings = <
 &kp ESCAPE  &kp Q  &kp W  &kp E             &kp R         &kp T               &kp Y      &kp U  &kp I      &kp O    &kp P      &kp BSPC
 &kp TAB     &kp A  &kp S  &kp D             &kp F         &kp G               &kp H      &kp J  &kp K      &kp L    &kp SEMI   &kp ENTER
-&kp LSHFT   &kp Z  &kp X  &kp C             &kp V         &kp B               &kp N      &kp M  &kp COMMA  &kp DOT  &kp MINUS  &kp LEFT_BRACKET
+&kp LSHFT   &kp Z  &kp X  &kp C             &kp V         &kp B               &kp N      &kp M  &kp COMMA  &kp DOT  &kp SLASH  &kp LEFT_BRACKET
                           &kp LEFT_CONTROL  &kp LEFT_ALT  &kp LEFT_COMMAND    &kp SPACE  &mo 1  &mo 2
             >;
         };
@@ -63,13 +63,14 @@
 
         combo_capslock {
             timeout-ms = <50>; // Tiempo máximo entre teclas
-            key-positions = <2 5>;
+            key-positions = <37 40>;
             bindings = <&kp CAPS>; // Activar Caps Lock
         };
+
         combo_shift_delete {
             timeout-ms = <50>; // Tiempo máximo entre teclas
-            key-positions = <10 11>; // Ajustar a las posiciones físicas de Shift y Delete
+            key-positions = <11 24>; // Ajustar a las posiciones físicas de Shift y Delete
             bindings = <&kp BACKSPACE>; // Acción: Backspace
-    };
+        };
     };
 };
