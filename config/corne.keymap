@@ -57,4 +57,19 @@
             >;
         };
     };
+
+    combos {
+        compatible = "zmk,combo";
+
+        combo_capslock {
+            timeout-ms = <50>; // Tiempo máximo entre teclas
+            key-positions = <2 5>;
+            bindings = <&caps_lock>; // Activar Caps Lock
+        };
+        combo_shift_delete {
+            timeout-ms = <50>; // Tiempo máximo entre teclas
+            key-positions = <10 11>; // Ajustar a las posiciones físicas de Shift y Delete
+            bindings = <&kp BACKSPACE>; // Acción: Backspace
+    };
+    };
 };
