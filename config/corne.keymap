@@ -70,7 +70,7 @@
         combo_shift_delete {
             timeout-ms = <50>; // Tiempo máximo entre teclas
             key-positions = <11 24>; // Ajustar a las posiciones físicas de Shift y Delete
-            bindings = <&kp BACKSPACE>; // Acción: Backspace
+            bindings = <&kp BACKSPACE &kp LEFT_COMMAND>; // Acción: Backspace + FN emulado
         };
     };
 };
