@@ -61,7 +61,7 @@
         compatible = "zmk,combos";
 
         combo_capslock {
-            timeout-ms = <200>; // Tiempo máximo entre teclas
+            timeout-ms = <250>; // Tiempo máximo entre teclas
             key-positions = <37 40>;
             bindings = <&kp CAPS>; // Activar Caps Lock
         };
@@ -69,7 +69,7 @@
         combo_shift_delete {
             timeout-ms = <50>; // Tiempo máximo entre teclas
             key-positions = <11 24>; // Ajustar a las posiciones físicas de Shift y Delete
-            bindings = <&kp DELETE>;
+            bindings = <&kp A>;
         };
     };
 };
