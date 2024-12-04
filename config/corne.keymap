@@ -49,10 +49,10 @@
             //                    | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
-&kp TILDE  &kp EXCL  &kp LEFT_BRACKET  &kp HASH       &kp DLLR   &kp PRCNT    &kp SLASH  &kp MINUS      &kp RIGHT_PARENTHESIS  &kp EQUAL  &kp EQUAL  &kp UNDERSCORE
-&trans     &trans    &kp SINGLE_QUOTE  &kp SEMICOLON  &kp COLON  &trans       &trans     &kp BACKSLASH  &kp LBKT               &kp RBKT   &kp PLUS   &kp ASTERISK
-&trans     &trans    &trans            &trans         &trans     &trans       &trans     &kp PIPE       &kp LBRC               &kp RBRC   &trans     &kp CARET
-                                       &trans         &trans     &trans       &trans     &trans         &trans
+&kp TILDE  &kp EXCL  &kp SQT           &kp HASH       &kp DLLR   &kp PRCNT    &kp AMPERSAND  &kp LC(QUESTION)  &kp RIGHT_PARENTHESIS  &kp EQUAL  &kp EQUAL  &kp UNDERSCORE
+&trans     &trans    &kp SINGLE_QUOTE  &kp SEMICOLON  &kp COLON  &trans       &trans         &kp BACKSLASH     &kp LBKT               &kp RBKT   &kp PLUS   &kp ASTERISK
+&trans     &trans    &trans            &trans         &trans     &trans       &trans         &kp PIPE          &kp LBRC               &kp RBRC   &trans     &kp CARET
+                                       &trans         &trans     &trans       &trans         &trans            &trans
             >;
         };
     };
@@ -62,7 +62,7 @@
 
         combo_capslock {
             timeout-ms = <250>; // Tiempo máximo entre teclas
-            key-positions = <36 41>; // Las dos de las layers 
+            key-positions = <38 40>; // Las dos de las layers 
             bindings = <&kp CAPS>; // Activar Caps Lock
         };
 
