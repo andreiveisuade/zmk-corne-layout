@@ -62,7 +62,7 @@
 
         combo_capslock {
             timeout-ms = <250>; // Tiempo máximo entre teclas
-            key-positions = <38 40>; // Las dos de las layers 
+            key-positions = <19 20>; // Las dos de las layers 
             bindings = <&kp CAPS>; // Activar Caps Lock
         };
 
