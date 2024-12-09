@@ -31,10 +31,10 @@
 
         raise_layer {
             bindings = <
-&kp LA(RIGHT_BRACKET)  &kp EXCL  &kp AT            &kp HASH       &kp DLLR   &kp PRCNT    &kp CARET              &kp AMPERSAND  &kp ASTERISK       &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp UNDERSCORE
-&trans                 &trans    &kp SINGLE_QUOTE  &kp SEMICOLON  &kp COLON  &trans       &kp LA(DOUBLE_QUOTES)  &kp LA(MINUS)  &kp DOUBLE_QUOTES  &kp PIPE              &kp RIGHT_BRACE        &kp RIGHT_BRACKET
-&trans                 &trans    &trans            &trans         &trans     &trans       &trans                 &kp GRAVE      &kp SINGLE_QUOTE   &kp BACKSLASH         &trans                 &trans
-                                                   &trans         &trans     &trans       &trans                 &trans         &trans
+&kp LA(RIGHT_BRACKET)  &kp EXCL  &kp AT            &kp HASH           &kp DLLR       &kp PRCNT    &kp CARET              &kp AMPERSAND  &kp ASTERISK       &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp UNDERSCORE
+&trans                 &trans    &kp SINGLE_QUOTE  &kp RS(RA(COMMA))  &kp RA(COMMA)  &trans       &kp LA(DOUBLE_QUOTES)  &kp LA(MINUS)  &kp DOUBLE_QUOTES  &kp PIPE              &kp RIGHT_BRACE        &kp RIGHT_BRACKET
+&trans                 &trans    &trans            &trans             &trans         &trans       &trans                 &kp GRAVE      &kp SINGLE_QUOTE   &kp BACKSLASH         &trans                 &trans
+                                                   &trans             &trans         &trans       &trans                 &trans         &trans
             >;
         };
 
@@ -66,18 +66,6 @@
         layer_3 {
             bindings = <&mo 3>;
             key-positions = <40 41>;
-        };
-
-        combo_less_than {
-            timeout-ms = <250>;
-            key-positions = <41 15>;
-            bindings = <&kp LESS_THAN>;
-        };
-
-        combo_greater_than {
-            timeout-ms = <250>;
-            key-positions = <41 16>;
-            bindings = <&kp GREATER_THAN>;
         };
     };
 };
