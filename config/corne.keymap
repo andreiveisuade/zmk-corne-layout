@@ -70,13 +70,13 @@
 
         combo_less_than {
             timeout-ms = <250>;
-            key-positions = <47 41 15>;
+            key-positions = <41 15>;
             bindings = <&kp LESS_THAN>;
         };
 
         combo_greater_than {
             timeout-ms = <250>;
-            key-positions = <48 41 16>;
+            key-positions = <41 16>;
             bindings = <&kp GREATER_THAN>;
         };
     };
