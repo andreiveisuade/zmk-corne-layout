@@ -12,56 +12,38 @@
         compatible = "zmk,keymap";
 
         default_layer {
-            // -----------------------------------------------------------------------------------------
-            // |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BSPC |
-            // | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
-            // | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
-            //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
-
             bindings = <
-&kp ESCAPE  &kp Q  &kp W  &kp E             &kp R         &kp T               &kp Y      &kp U  &kp I      &kp O    &kp P      &kp BSPC
-&kp TAB     &kp A  &kp S  &kp D             &kp F         &kp G               &kp H      &kp J  &kp K      &kp L    &kp SEMI   &kp ENTER
-&kp LSHFT   &kp Z  &kp X  &kp C             &kp V         &kp B               &kp N      &kp M  &kp COMMA  &kp DOT  &kp SLASH  &kp LEFT_BRACKET
-                          &kp LEFT_CONTROL  &kp LEFT_ALT  &kp LEFT_COMMAND    &kp SPACE  &mo 1  &mo 2
+                &kp ESCAPE   &kp Q  &kp W  &kp E              &kp R          &kp T                &kp Y       &kp U   &kp I      &kp O    &kp P     &kp BSPC
+                &kp TAB      &kp A  &kp S  &kp D              &kp F          &kp G                &kp H       &kp J   &kp K      &kp L    &kp SEMI  &kp ENTER
+                &kp LSHFT    &kp Z  &kp X  &kp C              &kp V          &kp B                &kp N       &kp M   &kp COMMA  &kp DOT  &kp SLASH &kp LEFT_BRACKET
+                                           &kp LEFT_CONTROL   &kp LEFT_ALT   &kp LEFT_COMMAND     &kp SPACE   &mo 1   &mo 2
             >;
         };
 
         lower_layer {
-            // -----------------------------------------------------------------------------------------
-            // |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BSPC |
-            // | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
-            // | SHFT |     |     |     |     |     |   |     |     |     |     |     |      |
-            //                    | GUI |     | SPC |   | ENT |     | ALT |
-
             bindings = <
-&trans  &kp N1  &kp N2  &kp N3  &kp N4  &kp N5    &kp N6      &kp N7         &kp N8       &kp N9         &kp N0  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &kp LEFT    &kp DOWN       &kp UP       &kp RIGHT      &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &kp K_BACK  &kp PAGE_DOWN  &kp PAGE_UP  &kp K_FORWARD  &trans  &trans
-                        &trans  &trans  &trans    &trans      &trans         &trans
+                &trans  &kp N1  &kp N2  &kp N3   &kp N4   &kp N5     &kp N6       &kp N7          &kp N8        &kp N9          &kp N0  &trans
+                &trans  &trans  &trans  &trans   &trans   &trans     &kp LEFT     &kp DOWN        &kp UP        &kp RIGHT       &trans  &trans
+                &trans  &trans  &trans  &trans   &trans   &trans     &kp K_BACK   &kp PAGE_DOWN   &kp PAGE_UP   &kp K_FORWARD   &trans  &trans
+                                       &trans   &trans   &trans     &trans       &trans          &trans
             >;
         };
 
         raise_layer {
-            // -----------------------------------------------------------------------------------------
-            // |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BSPC |
-            // | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
-            // | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
-            //                    | GUI |     | SPC |   | ENT |     | ALT |
-
             bindings = <
-&kp LA(RIGHT_BRACKET)  &kp EXCL  &kp AT            &kp HASH       &kp DLLR   &kp PRCNT    &kp CARET              &kp AMPERSAND  &kp ASTERISK       &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp UNDERSCORE
-&trans                 &trans    &kp SINGLE_QUOTE  &kp SEMICOLON  &kp COLON  &trans       &kp LA(DOUBLE_QUOTES)  &kp LA(MINUS)  &kp DOUBLE_QUOTES  &kp PIPE              &kp RIGHT_BRACE        &kp RIGHT_BRACKET
-&trans                 &trans    &trans            &trans         &trans     &trans       &trans                 &kp GRAVE      &kp SINGLE_QUOTE   &kp BACKSLASH         &trans                 &trans
-                                                   &trans         &trans     &trans       &trans                 &trans         &trans
+                &kp LA(RIGHT_BRACKET)  &kp EXCL  &kp AT             &kp HASH        &kp DLLR    &kp PRCNT     &kp CARET               &kp AMPERSAND   &kp ASTERISK        &kp LEFT_PARENTHESIS   &kp RIGHT_PARENTHESIS   &kp UNDERSCORE
+                &trans                 &trans    &kp SINGLE_QUOTE   &kp SEMICOLON   &kp COLON   &trans        &kp LA(DOUBLE_QUOTES)   &kp LA(MINUS)   &kp DOUBLE_QUOTES   &kp PIPE               &kp RIGHT_BRACE         &kp RIGHT_BRACKET
+                &trans                 &trans    &trans             &trans          &trans      &trans        &trans                  &kp GRAVE       &kp SINGLE_QUOTE    &kp BACKSLASH          &trans                  &trans
+                                                                   &trans          &trans      &trans        &trans                  &trans          &trans
             >;
         };
 
         layer_3 {
             bindings = <
-&trans  &kp C_BRIGHTNESS_DEC  &kp C_BRIGHTNESS_INC  &kp C_VOL_DN  &kp C_VOLUME_UP  &kp K_MUTE    &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans                &kp K_BACK            &kp C_PAUSE   &kp C_NEXT       &trans        &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans                &trans                &trans        &trans           &trans        &trans  &trans  &trans  &trans  &trans  &trans
-                                                    &trans        &trans           &trans        &trans  &trans  &trans
+                &trans  &kp C_BRIGHTNESS_DEC  &kp C_BRIGHTNESS_INC  &kp C_VOL_DN    &kp C_VOLUME_UP  &kp K_MUTE     &trans   &trans   &trans   &trans   &trans   &trans
+                &trans  &trans                &kp K_BACK            &kp C_PAUSE     &kp C_NEXT       &trans         &trans   &trans   &trans   &trans   &trans   &trans
+                &trans  &trans                &trans                &trans          &trans           &trans         &trans   &trans   &trans   &trans   &trans   &trans
+                                                                   &trans          &trans           &trans         &trans   &trans   &trans
             >;
         };
     };
@@ -70,20 +52,32 @@
         compatible = "zmk,combos";
 
         combo_capslock {
-            timeout-ms = <250>; // Tiempo máximo entre teclas
-            key-positions = <19 20>; // Las dos de las layers 
-            bindings = <&kp CAPS>; // Activar Caps Lock
+            timeout-ms = <250>;
+            key-positions = <19 20>;
+            bindings = <&kp CAPS>;
         };
 
         combo_shift_delete {
-            timeout-ms = <500>; // Tiempo máximo entre teclas
-            key-positions = <11 24>; // Ajustar a las posiciones físicas de Shift y Delete
+            timeout-ms = <500>;
+            key-positions = <11 24>;
             bindings = <&kp DEL>;
         };
 
         layer_3 {
             bindings = <&mo 3>;
             key-positions = <40 41>;
+        };
+
+        combo_less_than {
+            timeout-ms = <250>;
+            key-positions = <37 47>;
+            bindings = <&kp LESS_THAN>;
+        };
+
+        combo_greater_than {
+            timeout-ms = <250>;
+            key-positions = <37 48>;
+            bindings = <&kp GREATER_THAN>;
         };
     };
 };
