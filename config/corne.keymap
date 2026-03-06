@@ -191,43 +191,53 @@
          * Karabiner intercepts CapsLock:
          *   hold → Hyper (Ctrl+Shift+Option+Cmd)
          *   tap → Escape
+         * "jk" is extremely rare — lenient timing for easy activation
          */
         combo_capslock {
-            timeout-ms = <150>;
+            timeout-ms = <100>;
             require-prior-idle-ms = <150>;
             key-positions = <19 20>;  // J + K
             bindings = <&kp CAPSLOCK>;
         };
 
-        /* K + L (hold) → Workspace Layer (Layer 4) */
+        /* K + L (hold) → Workspace Layer (Layer 4)
+         * "kl" appears in some words (walk, folk) — moderate timing
+         */
         combo_workspace {
-            timeout-ms = <150>;
-            require-prior-idle-ms = <150>;
+            timeout-ms = <60>;
+            require-prior-idle-ms = <200>;
             key-positions = <20 21>;  // K + L
             bindings = <&mo 4>;
         };
 
         /* D + F (hold) → tmux Layer (Layer 5)
          * Right hand keys send Ctrl+A prefix macros
+         * "df" is rare — moderate timing
          */
         combo_tmux {
-            timeout-ms = <150>;
-            require-prior-idle-ms = <150>;
+            timeout-ms = <60>;
+            require-prior-idle-ms = <200>;
             key-positions = <15 16>;  // D + F
             bindings = <&mo 5>;
         };
 
-        /* A + S (hold) → AeroSpace Layer (Layer 6) */
+        /* A + S (hold) → AeroSpace Layer (Layer 6)
+         * "as"/"sa" is VERY common (casa, las, was, has) — strict timing
+         * timeout 40ms = must be nearly simultaneous
+         * idle 300ms = won't trigger during typing flow
+         */
         combo_aerospace {
-            timeout-ms = <150>;
-            require-prior-idle-ms = <150>;
+            timeout-ms = <40>;
+            require-prior-idle-ms = <300>;
             key-positions = <13 14>;  // A + S
             bindings = <&mo 6>;
         };
 
-        /* Z + X (hold) → Scroll Layer (Layer 7) */
+        /* Z + X (hold) → Scroll Layer (Layer 7)
+         * "zx" is extremely rare — lenient timing for easy activation
+         */
         combo_scroll {
-            timeout-ms = <150>;
+            timeout-ms = <100>;
             require-prior-idle-ms = <150>;
             key-positions = <25 26>;  // Z + X
             bindings = <&mo 7>;
