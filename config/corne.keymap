@@ -5,18 +5,20 @@
  * Layers:
  *   0 = Base (QWERTY)
  *   1 = Lower (numbers, symbols, brackets)
- *   2 = Raise (F-keys, media, arrows, nav, BT)
+ *   2 = Raise (F-keys, media, arrows on HJKL, nav, BT)
  *   3 = (reserved)
- *   4 = Workspace (AeroSpace workspace switching via K+L combo)
- *   5 = Scroll (mouse scroll via D+F combo)
+ *   4 = Workspace (AeroSpace switching via K+L combo)
+ *   5 = tmux (prefix macros via D+F combo)
  *   6 = AeroSpace (window focus/move via A+S combo)
+ *   7 = Scroll (mouse scroll via Z+X combo)
  *
  * Combos:
  *   L1 + L2 (thumb keys)  → Right Shift (Karabiner: tap=dead acute, hold+;=ñ)
  *   J + K                 → CapsLock (Karabiner: hold=Hyper, tap=Escape)
  *   K + L (hold)          → Layer 4 (Workspace)
- *   D + F (hold)          → Layer 5 (Scroll)
- *   A + S (hold)          → Layer 6 (AeroSpace focus/move)
+ *   D + F (hold)          → Layer 5 (tmux)
+ *   A + S (hold)          → Layer 6 (AeroSpace)
+ *   Z + X (hold)          → Layer 7 (Scroll)
  *
  * Key positions (Corne 42-key):
  *    0  1  2  3  4  5       6  7  8  9 10 11
@@ -36,6 +38,140 @@
 #include <dt-bindings/zmk/mouse.h>
 
 / {
+    /* ================================================================
+     *  TMUX MACROS — each sends Ctrl+A (prefix) then the action key
+     *  Used by Layer 5 (D+F combo)
+     * ================================================================ */
+    macros {
+        // Splits
+        tmux_hsplit: tmux_hsplit {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <30>;
+            bindings = <&kp LC(A)>, <&kp MINUS>;
+        };
+        tmux_vsplit: tmux_vsplit {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <30>;
+            bindings = <&kp LC(A)>, <&kp PIPE>;
+        };
+        // Window navigation
+        tmux_next: tmux_next {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <30>;
+            bindings = <&kp LC(A)>, <&kp N>;
+        };
+        tmux_prev: tmux_prev {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <30>;
+            bindings = <&kp LC(A)>, <&kp P>;
+        };
+        tmux_new: tmux_new {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <30>;
+            bindings = <&kp LC(A)>, <&kp C>;
+        };
+        // Pane management
+        tmux_close: tmux_close {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <30>;
+            bindings = <&kp LC(A)>, <&kp X>;
+        };
+        tmux_zoom: tmux_zoom {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <30>;
+            bindings = <&kp LC(A)>, <&kp Z>;
+        };
+        // Copy mode & paste
+        tmux_copy: tmux_copy {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <30>;
+            bindings = <&kp LC(A)>, <&kp LBKT>;
+        };
+        tmux_paste: tmux_paste {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <30>;
+            bindings = <&kp LC(A)>, <&kp RBKT>;
+        };
+        // Lists
+        tmux_winlist: tmux_winlist {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <30>;
+            bindings = <&kp LC(A)>, <&kp W>;
+        };
+        tmux_sesslist: tmux_sesslist {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <30>;
+            bindings = <&kp LC(A)>, <&kp S>;
+        };
+        // Rename
+        tmux_rename: tmux_rename {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <30>;
+            bindings = <&kp LC(A)>, <&kp COMMA>;
+        };
+        tmux_rename_s: tmux_rename_s {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <30>;
+            bindings = <&kp LC(A)>, <&kp DLLR>;
+        };
+        // Session management
+        tmux_detach: tmux_detach {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <30>;
+            bindings = <&kp LC(A)>, <&kp D>;
+        };
+        tmux_reload: tmux_reload {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <30>;
+            bindings = <&kp LC(A)>, <&kp R>;
+        };
+        // Resurrect
+        tmux_save: tmux_save {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <30>;
+            bindings = <&kp LC(A)>, <&kp LC(S)>;
+        };
+        tmux_restore: tmux_restore {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <30>;
+            bindings = <&kp LC(A)>, <&kp LC(R)>;
+        };
+    };
+
     combos {
         compatible = "zmk,combos";
 
@@ -63,9 +199,7 @@
             bindings = <&kp CAPSLOCK>;
         };
 
-        /* K + L (hold) → Workspace Layer (Layer 4)
-         * AeroSpace workspace switching with left hand keys
-         */
+        /* K + L (hold) → Workspace Layer (Layer 4) */
         combo_workspace {
             timeout-ms = <150>;
             require-prior-idle-ms = <150>;
@@ -73,24 +207,30 @@
             bindings = <&mo 4>;
         };
 
-        /* D + F (hold) → Scroll Layer (Layer 5)
-         * Mouse scroll with hjkl on right hand
+        /* D + F (hold) → tmux Layer (Layer 5)
+         * Right hand keys send Ctrl+A prefix macros
          */
-        combo_scroll {
+        combo_tmux {
             timeout-ms = <150>;
             require-prior-idle-ms = <150>;
             key-positions = <15 16>;  // D + F
             bindings = <&mo 5>;
         };
 
-        /* A + S (hold) → AeroSpace Layer (Layer 6)
-         * Window focus with hjkl, move with yuio
-         */
+        /* A + S (hold) → AeroSpace Layer (Layer 6) */
         combo_aerospace {
             timeout-ms = <150>;
             require-prior-idle-ms = <150>;
             key-positions = <13 14>;  // A + S
             bindings = <&mo 6>;
+        };
+
+        /* Z + X (hold) → Scroll Layer (Layer 7) */
+        combo_scroll {
+            timeout-ms = <150>;
+            require-prior-idle-ms = <150>;
+            key-positions = <25 26>;  // Z + X
+            bindings = <&mo 7>;
         };
     };
 
@@ -99,7 +239,6 @@
 
         /* ┌──────────────────────────────────────────────────────────┐
          * │  LAYER 0 — Base                                         │
-         * ├──────────────────────────────────────────────────────────┤
          * │ Tab  Q  W  E  R  T  │  Y  U  I  O  P  ESC              │
          * │ Ctrl A  S  D  F  G  │  H  J  K  L  ;  '                │
          * │ Shft Z  X  C  V  B  │  N  M  ,  .  /  Alt              │
@@ -117,7 +256,6 @@
 
         /* ┌──────────────────────────────────────────────────────────┐
          * │  LAYER 1 — Lower (hold L1 thumb)                        │
-         * ├──────────────────────────────────────────────────────────┤
          * │ Tab  !  @  #  $  %  │  ^  &  *  (  )  \                │
          * │ Ctrl 1  2  3  4  5  │  -  =  `  [  ]  |                │
          * │ Shft 6  7  8  9  0  │  _  +  ~  {  }  Alt              │
@@ -135,23 +273,23 @@
 
         /* ┌──────────────────────────────────────────────────────────┐
          * │  LAYER 2 — Raise (hold L2 thumb)                        │
-         * ├──────────────────────────────────────────────────────────┤
-         * │  __  F1  F2  F3  F4  F5  │  F6  F7  F8  F9  F10  __   │
-         * │  __  Prev Nxt V-  V+  Ply│  __  ←   ↓   ↑   →    __   │
-         * │ BTC BT1 BT2 BT3 BT4 BT5 │ Hom PgDn PgUp End F11 F12  │
+         * │  __  F1  F2  F3  F4  F5  │  F6  F7   F8   F9  F10  __ │
+         * │  __  Prv Nxt V-  V+  Ply │  ←   ↓    ↑    →   __   __ │
+         * │ BTC BT1 BT2 BT3 BT4 BT5 │ Hom PgDn PgUp End F11  F12 │
          * │         CMD [L1] Ent     │  Spc DEL  __                │
+         * │  FIX: arrows now on HJKL matching Vim motions           │
          * └──────────────────────────────────────────────────────────┘
          */
         raise_layer {
             bindings = <
-                &none     &kp F1     &kp F2     &kp F3       &kp F4       &kp F5        &kp F6   &kp F7    &kp F8    &kp F9  &kp F10   &none
-                &none     &kp C_PREV &kp C_NEXT &kp C_VOL_DN &kp C_VOL_UP &kp C_PP      &none    &kp LEFT  &kp DOWN  &kp UP  &kp RIGHT &none
+                &none     &kp F1     &kp F2     &kp F3       &kp F4       &kp F5        &kp F6    &kp F7    &kp F8    &kp F9    &kp F10   &none
+                &none     &kp C_PREV &kp C_NEXT &kp C_VOL_DN &kp C_VOL_UP &kp C_PP      &kp LEFT  &kp DOWN  &kp UP    &kp RIGHT &none     &none
                 &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &kp HOME &kp PG_DN &kp PG_UP &kp END &kp F11 &kp F12
                                           &kp LGUI &mo 1     &kp RET     &kp SPACE &kp DEL   &trans
             >;
         };
 
-        /* Layer 3 — Reserved (placeholder for future use) */
+        /* Layer 3 — Reserved */
         reserved_layer {
             bindings = <
                 &none &none &none &none &none &none   &none &none &none &none &none &none
@@ -163,12 +301,9 @@
 
         /* ┌──────────────────────────────────────────────────────────┐
          * │  LAYER 4 — Workspace (hold K+L combo)                   │
-         * ├──────────────────────────────────────────────────────────┤
-         * │  Positions match Lower layer number positions:          │
          * │  A=WS1, S=WS2, D=WS3, F=WS4, G=WS5                    │
          * │  Z=WS6, X=WS7, C=WS8, V=WS9                           │
-         * │                                                          │
-         * │  These send Alt+N which AeroSpace maps to workspace N   │
+         * │  Sends Alt+N → AeroSpace workspace N                    │
          * └──────────────────────────────────────────────────────────┘
          */
         workspace_layer {
@@ -181,31 +316,31 @@
         };
 
         /* ┌──────────────────────────────────────────────────────────┐
-         * │  LAYER 5 — Scroll (hold D+F combo)                      │
+         * │  LAYER 5 — tmux (hold D+F combo)                        │
          * ├──────────────────────────────────────────────────────────┤
-         * │  Left hand holds D+F, right hand uses hjkl for scroll   │
-         * │  h = scroll left, j = scroll down                       │
-         * │  k = scroll up,   l = scroll right                      │
+         * │  Each key sends Ctrl+A (tmux prefix) + action key       │
+         * │  Left hand holds D+F, right hand executes:              │
          * │                                                          │
-         * │  Requires CONFIG_ZMK_MOUSE=y in .conf file              │
+         * │  __  __  __  __  __  __  │  Y:cpy U:ses I:win O:zoom P:pst __│
+         * │  __  __  __  __  __  __  │  H:-   J:nxt K:prv L:|   ;:ren ' │
+         * │  __  __  __  __  __  __  │  N:new M:mv  ,:re$ .:det /:rld __│
+         * │         __  __  __       │  sav   cls   rst                  │
          * └──────────────────────────────────────────────────────────┘
          */
-        scroll_layer {
+        tmux_layer {
             bindings = <
-                &none &none &none &none &none &none   &none            &none            &none          &none             &none &none
-                &none &none &none &none &none &none   &msc SCRL_LEFT   &msc SCRL_DOWN   &msc SCRL_UP   &msc SCRL_RIGHT   &none &none
-                &none &none &none &none &none &none   &none            &none            &none          &none             &none &none
-                                  &none &none &none   &none            &none            &none
+                &none &none &none &none &none &none   &tmux_copy  &tmux_sesslist &tmux_winlist &tmux_zoom    &tmux_paste   &none
+                &none &none &none &none &none &none   &tmux_hsplit &tmux_next    &tmux_prev   &tmux_vsplit  &tmux_rename  &tmux_rename_s
+                &none &none &none &none &none &none   &tmux_new   &none          &tmux_rename_s &tmux_detach &tmux_reload &none
+                                  &none &none &none   &tmux_save  &tmux_close   &tmux_restore
             >;
         };
 
         /* ┌──────────────────────────────────────────────────────────┐
          * │  LAYER 6 — AeroSpace (hold A+S combo)                   │
-         * ├──────────────────────────────────────────────────────────┤
-         * │  Right hand home row: hjkl → Alt+hjkl (focus windows)   │
-         * │  Right hand top row:  yuio → Alt+Shift+hjkl (move win)  │
-         * │  Extras: f=fullscreen, t=scratchpad, tab=ws prev,       │
-         * │          enter=open Kitty                                │
+         * │  Home row: hjkl → Alt+hjkl (focus)                      │
+         * │  Top row:  yuio → Alt+Shift+hjkl (move)                 │
+         * │  f=fullscreen, t=scratchpad, tab=ws prev, enter=kitty   │
          * └──────────────────────────────────────────────────────────┘
          */
         aerospace_layer {
@@ -214,6 +349,21 @@
                 &none       &none &none &none &kp LA(F) &none             &kp LA(H)     &kp LA(J)     &kp LA(K)     &kp LA(L)     &none &none
                 &none       &none &none &none &none     &none             &none          &none         &none         &none         &none &none
                                         &none &none     &kp LA(RET)       &none          &none         &none
+            >;
+        };
+
+        /* ┌──────────────────────────────────────────────────────────┐
+         * │  LAYER 7 — Scroll (hold Z+X combo)                      │
+         * │  hjkl = scroll left/down/up/right                        │
+         * │  Requires CONFIG_ZMK_MOUSE=y in .conf                    │
+         * └──────────────────────────────────────────────────────────┘
+         */
+        scroll_layer {
+            bindings = <
+                &none &none &none &none &none &none   &none          &none          &none        &none           &none &none
+                &none &none &none &none &none &none   &msc SCRL_LEFT &msc SCRL_DOWN &msc SCRL_UP &msc SCRL_RIGHT &none &none
+                &none &none &none &none &none &none   &none          &none          &none        &none           &none &none
+                                  &none &none &none   &none          &none          &none
             >;
         };
     };
