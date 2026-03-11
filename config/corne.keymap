@@ -5,7 +5,7 @@
  * Layers:
  *   0 = Base (QWERTY)
  *   1 = Lower (numbers, symbols, brackets)
- *   2 = Raise (F-keys, media, arrows on HJKL, nav, BT)
+ *   2 = Raise (F-keys, media, arrows on JKL;, nav, BT)
  *   3 = (reserved)
  *   4 = Workspace (AeroSpace switching via K+L combo)
  *   5 = tmux (prefix macros via D+F combo)
@@ -172,6 +172,19 @@
         };
     };
 
+    /* ================================================================
+     *  BEHAVIORS
+     *  bspc_del: Backspace normally, Delete when Shift is held
+     * ================================================================ */
+    behaviors {
+        bspc_del: backspace_delete {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp BACKSPACE>, <&kp DELETE>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+    };
+
     combos {
         compatible = "zmk,combos";
 
@@ -252,7 +265,8 @@
          * │ Tab  Q  W  E  R  T  │  Y  U  I  O  P  ESC              │
          * │ Ctrl A  S  D  F  G  │  H  J  K  L  ;  '                │
          * │ Shft Z  X  C  V  B  │  N  M  ,  .  /  Alt              │
-         * │         CMD L1 Ent  │  Spc Bspc L2                     │
+         * │         CMD L1 Ent  │  Bspc Spc L2                     │
+         * │  Bspc: mod-morph (Shift+Bspc = Delete forward)         │
          * └──────────────────────────────────────────────────────────┘
          */
         default_layer {
@@ -260,7 +274,7 @@
                 &kp TAB   &kp Q &kp W &kp E &kp R &kp T     &kp Y &kp U &kp I     &kp O   &kp P    &kp ESC
                 &kp LCTRL &kp A &kp S &kp D &kp F &kp G     &kp H &kp J &kp K     &kp L   &kp SEMI &kp SQT
                 &kp LSHFT &kp Z &kp X &kp C &kp V &kp B     &kp N &kp M &kp COMMA &kp DOT &kp FSLH &kp RALT
-                                    &kp LGUI &mo 1 &kp RET   &kp SPACE &kp BSPC &mo 2
+                                    &kp LGUI &mo 1 &kp RET   &bspc_del &kp SPACE &mo 2
             >;
         };
 
@@ -269,7 +283,7 @@
          * │ Tab  !  @  #  $  %  │  ^  &  *  (  )  \                │
          * │ Ctrl 1  2  3  4  5  │  -  =  `  [  ]  |                │
          * │ Shft 6  7  8  9  0  │  _  +  ~  {  }  Alt              │
-         * │         CMD __ Ent  │  Spc Bspc [L2]                   │
+         * │         CMD __ Ent  │  Bspc Spc [L2]                   │
          * └──────────────────────────────────────────────────────────┘
          */
         lower_layer {
@@ -277,25 +291,25 @@
                 &kp TAB   &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp ASTRK &kp LPAR &kp RPAR &kp BSLH
                 &kp LCTRL &kp N1   &kp N2 &kp N3   &kp N4   &kp N5      &kp MINUS &kp EQUAL &kp GRAVE &kp LBKT &kp RBKT &kp PIPE
                 &kp LSHFT &kp N6   &kp N7 &kp N8   &kp N9   &kp N0      &kp UNDER &kp PLUS  &kp TILDE &kp LBRC &kp RBRC &kp RALT
-                                          &kp LGUI &trans    &kp RET     &kp SPACE &kp BSPC  &mo 2
+                                          &kp LGUI &trans    &kp RET     &bspc_del &kp SPACE &mo 2
             >;
         };
 
         /* ┌──────────────────────────────────────────────────────────┐
          * │  LAYER 2 — Raise (hold L2 thumb)                        │
          * │  __  F1  F2  F3  F4  F5  │  F6  F7   F8   F9  F10  __ │
-         * │  __  Prv Nxt V-  V+  Ply │  ←   ↓    ↑    →   __   __ │
+         * │  __  Prv Nxt V-  V+  Ply │  __   ←    ↓    ↑   →   __ │
          * │ BTC BT1 BT2 BT3 BT4 BT5 │ Hom PgDn PgUp End F11  F12 │
-         * │         CMD [L1] Ent     │  Spc DEL  __                │
-         * │  FIX: arrows now on HJKL matching Vim motions           │
+         * │         CMD [L1] Ent     │  DEL Spc  __                │
+         * │  ERGO: arrows on JKL; (right hand stays on home row)    │
          * └──────────────────────────────────────────────────────────┘
          */
         raise_layer {
             bindings = <
                 &none     &kp F1     &kp F2     &kp F3       &kp F4       &kp F5        &kp F6    &kp F7    &kp F8    &kp F9    &kp F10   &none
-                &none     &kp C_PREV &kp C_NEXT &kp C_VOL_DN &kp C_VOL_UP &kp C_PP      &kp LEFT  &kp DOWN  &kp UP    &kp RIGHT &none     &none
+                &none     &kp C_PREV &kp C_NEXT &kp C_VOL_DN &kp C_VOL_UP &kp C_PP      &none     &kp LEFT  &kp DOWN  &kp UP    &kp RIGHT &none
                 &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &kp HOME &kp PG_DN &kp PG_UP &kp END &kp F11 &kp F12
-                                          &kp LGUI &mo 1     &kp RET     &kp SPACE &kp DEL   &trans
+                                          &kp LGUI &mo 1     &kp RET     &kp DEL   &kp SPACE &trans
             >;
         };
 
@@ -330,50 +344,51 @@
          * ├──────────────────────────────────────────────────────────┤
          * │  Each key sends Ctrl+A (tmux prefix) + action key       │
          * │  Left hand holds D+F, right hand executes:              │
+         * │  ERGO: shifted one key right (JKL; home row)            │
          * │                                                          │
-         * │  __  __  __  __  __  __  │  Y:cpy U:ses I:win O:zoom P:pst __│
-         * │  __  __  __  __  __  __  │  H:-   J:prv K:nxt L:|   ;:ren ' │
-         * │  __  __  __  __  __  __  │  N:new M:mv  ,:re$ .:det /:rld __│
+         * │  __  __  __  __  __  __  │  __ Y:cpy U:ses I:win O:zoom P:pst│
+         * │  __  __  __  __  __  __  │  __  J:-  K:prv L:nxt ;:|  ':ren │
+         * │  __  __  __  __  __  __  │  __ M:new ,:__  .:re$ /:det rld  │
          * │         __  __  __       │  sav   cls   rst                  │
          * └──────────────────────────────────────────────────────────┘
          */
         tmux_layer {
             bindings = <
-                &none &none &none &none &none &none   &tmux_copy  &tmux_sesslist &tmux_winlist &tmux_zoom    &tmux_paste   &none
-                &none &none &none &none &none &none   &tmux_hsplit &tmux_prev    &tmux_next   &tmux_vsplit  &tmux_rename  &tmux_rename_s
-                &none &none &none &none &none &none   &tmux_new   &none          &tmux_rename_s &tmux_detach &tmux_reload &none
-                                  &none &none &none   &tmux_save  &tmux_close   &tmux_restore
+                &none &none &none &none &none &none   &none        &tmux_copy     &tmux_sesslist &tmux_winlist &tmux_zoom    &tmux_paste
+                &none &none &none &none &none &none   &none        &tmux_hsplit   &tmux_prev     &tmux_next   &tmux_vsplit  &tmux_rename
+                &none &none &none &none &none &none   &none        &tmux_new      &none          &tmux_rename_s &tmux_detach &tmux_reload
+                                  &none &none &none   &tmux_save   &tmux_close    &tmux_restore
             >;
         };
 
         /* ┌──────────────────────────────────────────────────────────┐
          * │  LAYER 6 — AeroSpace (hold A+S combo)                   │
-         * │  Home row: hjkl → Alt+hjkl (focus)                      │
-         * │  Top row:  yuio → Alt+Shift+hjkl (move)                 │
+         * │  Home row: jkl; → Alt+hjkl (focus) — shifted for ergo   │
+         * │  Top row:  uiop → Alt+Shift+hjkl (move) — shifted       │
          * │  f=fullscreen, t=scratchpad, tab=ws prev, enter=kitty   │
          * └──────────────────────────────────────────────────────────┘
          */
         aerospace_layer {
             bindings = <
-                &kp LA(TAB) &none &none &none &kp LA(T) &none             &kp LA(LS(H)) &kp LA(LS(J)) &kp LA(LS(K)) &kp LA(LS(L)) &none &none
-                &none       &none &none &none &kp LA(F) &none             &kp LA(H)     &kp LA(J)     &kp LA(K)     &kp LA(L)     &none &none
-                &none       &none &none &none &none     &none             &none          &none         &none         &none         &none &none
+                &kp LA(TAB) &none &none &none &kp LA(T) &none             &none          &kp LA(LS(H)) &kp LA(LS(J)) &kp LA(LS(K)) &kp LA(LS(L)) &none
+                &none       &none &none &none &kp LA(F) &none             &none          &kp LA(H)     &kp LA(J)     &kp LA(K)     &kp LA(L)     &none
+                &none       &none &none &none &none     &none             &none          &none         &none         &none         &none         &none
                                         &none &none     &kp LA(RET)       &none          &none         &none
             >;
         };
 
         /* ┌──────────────────────────────────────────────────────────┐
          * │  LAYER 7 — Scroll (hold Z+X combo)                      │
-         * │  hjkl = scroll left/down/up/right                        │
+         * │  jkl; = scroll left/down/up/right — shifted for ergo     │
          * │  Requires CONFIG_ZMK_MOUSE=y in .conf                    │
          * └──────────────────────────────────────────────────────────┘
          */
         scroll_layer {
             bindings = <
-                &none &none &none &none &none &none   &none          &none          &none        &none           &none &none
-                &none &none &none &none &none &none   &msc SCRL_LEFT &msc SCRL_DOWN &msc SCRL_UP &msc SCRL_RIGHT &none &none
-                &none &none &none &none &none &none   &none          &none          &none        &none           &none &none
-                                  &none &none &none   &none          &none          &none
+                &none &none &none &none &none &none   &none &none          &none          &none        &none           &none
+                &none &none &none &none &none &none   &none &msc SCRL_LEFT &msc SCRL_DOWN &msc SCRL_UP &msc SCRL_RIGHT &none
+                &none &none &none &none &none &none   &none &none          &none          &none        &none           &none
+                                  &none &none &none   &none &none          &none
             >;
         };
     };
