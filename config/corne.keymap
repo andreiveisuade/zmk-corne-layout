@@ -123,7 +123,7 @@
             #binding-cells = <0>;
             wait-ms = <30>;
             tap-ms = <30>;
-            bindings = <&kp LC(A)>, <&kp S>;
+            bindings = <&kp LC(A)>, <&kp F>;
         };
         // Rename
         tmux_rename: tmux_rename {
@@ -147,6 +147,13 @@
             wait-ms = <30>;
             tap-ms = <30>;
             bindings = <&kp LC(A)>, <&kp D>;
+        };
+        tmux_newsess: tmux_newsess {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <30>;
+            bindings = <&kp LC(A)>, <&kp LS(S)>;
         };
         tmux_reload: tmux_reload {
             compatible = "zmk,behavior-macro";
@@ -346,9 +353,9 @@
          * │  Left hand holds D+F, right hand executes:              │
          * │  ERGO: shifted one key right (JKL; home row)            │
          * │                                                          │
-         * │  __  __  __  __  __  __  │  __ Y:cpy U:ses I:win O:zoom P:pst│
+         * │  __  __  __  __  __  __  │  __ Y:cpy U:fzf I:win O:zoom P:pst│
          * │  __  __  __  __  __  __  │  __  J:-  K:prv L:nxt ;:|  ':ren │
-         * │  __  __  __  __  __  __  │  __ M:new ,:__  .:re$ /:det rld  │
+         * │  __  __  __  __  __  __  │  __ M:new N:ses .:re$ /:det rld  │
          * │         __  __  __       │  sav   cls   rst                  │
          * └──────────────────────────────────────────────────────────┘
          */
@@ -356,7 +363,7 @@
             bindings = <
                 &none &none &none &none &none &none   &none        &tmux_copy     &tmux_sesslist &tmux_winlist &tmux_zoom    &tmux_paste
                 &none &none &none &none &none &none   &none        &tmux_hsplit   &tmux_prev     &tmux_next   &tmux_vsplit  &tmux_rename
-                &none &none &none &none &none &none   &none        &tmux_new      &none          &tmux_rename_s &tmux_detach &tmux_reload
+                &none &none &none &none &none &none   &none        &tmux_new      &tmux_newsess  &tmux_rename_s &tmux_detach &tmux_reload
                                   &none &none &none   &tmux_save   &tmux_close    &tmux_restore
             >;
         };
