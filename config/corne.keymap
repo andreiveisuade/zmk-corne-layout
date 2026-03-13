@@ -263,18 +263,18 @@
         /* ┌──────────────────────────────────────────────────────────┐
          * │  LAYER 0 — Base                                         │
          * │ Tab  Q  W  E  R  T  │  Y  U  I  O  P  ESC              │
-         * │ Ctrl A  S  D  F  G  │  H  J  K  L  ;  '                │
+         * │ Ctrl A  S  D  F  G  │  H  J  K  L  ; Bspc             │
          * │ Shft Z  X  C  V  B  │  N  M  ,  .  /  Alt              │
-         * │         CMD L1 Ent  │  Bspc Spc L2                     │
+         * │         CMD L1 Ent  │   '  Spc L2                      │
          * │  Bspc: mod-morph (Shift+Bspc = Delete forward)         │
          * └──────────────────────────────────────────────────────────┘
          */
         default_layer {
             bindings = <
                 &kp TAB   &kp Q &kp W &kp E &kp R &kp T     &kp Y &kp U &kp I     &kp O   &kp P    &kp ESC
-                &kp LCTRL &kp A &kp S &kp D &kp F &kp G     &kp H &kp J &kp K     &kp L   &kp SEMI &kp SQT
+                &kp LCTRL &kp A &kp S &kp D &kp F &kp G     &kp H &kp J &kp K     &kp L   &kp SEMI &bspc_del
                 &kp LSHFT &kp Z &kp X &kp C &kp V &kp B     &kp N &kp M &kp COMMA &kp DOT &kp FSLH &kp RALT
-                                    &kp LGUI &mo 1 &kp RET   &bspc_del &kp SPACE &mo 2
+                                    &kp LGUI &mo 1 &kp RET   &kp SQT &kp SPACE &mo 2
             >;
         };
 
