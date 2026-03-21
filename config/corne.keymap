@@ -6,7 +6,7 @@
  *   0 = Base (QWERTY)
  *   1 = Lower (numbers, symbols, brackets)
  *   2 = Raise (F-keys, media, arrows on JKL;, nav, BT)
- *   3 = (reserved)
+ *   3 = Zen Browser (tabs, workspaces, splits via S+D combo)
  *   4 = Workspace (AeroSpace switching via K+L combo)
  *   5 = tmux (prefix macros via D+F combo)
  *   6 = AeroSpace (window focus/move via A+S combo)
@@ -15,6 +15,7 @@
  * Combos:
  *   L1 + L2 (thumb keys)  → Right Shift (Karabiner: tap=dead acute, hold+;=ñ)
  *   J + K                 → CapsLock (Karabiner: hold=Hyper, tap=Escape)
+ *   S + D (hold)          → Layer 3 (Zen Browser)
  *   K + L (hold)          → Layer 4 (Workspace)
  *   D + F (hold)          → Layer 5 (tmux)
  *   A + S (hold)          → Layer 6 (AeroSpace)
@@ -232,6 +233,17 @@
             bindings = <&kp CAPSLOCK>;
         };
 
+        /* S + D (hold) → Zen Browser Layer (Layer 3)
+         * Tabs, workspaces, splits — all right hand
+         * "sd" is rare — moderate timing
+         */
+        combo_zen {
+            timeout-ms = <50>;
+            require-prior-idle-ms = <250>;
+            key-positions = <14 15>;  // S + D
+            bindings = <&mo 3>;
+        };
+
         /* K + L (hold) → Workspace Layer (Layer 4)
          * "kl" appears in some words (walk, folk) — moderate timing
          */
@@ -333,13 +345,21 @@
             >;
         };
 
-        /* Layer 3 — Reserved */
-        reserved_layer {
+        /* ┌──────────────────────────────────────────────────────────┐
+         * │  LAYER 3 — Zen Browser (hold S+D combo)                   │
+         * │  __  __  __  __  __  __  │ WS1  WS2  WS3  WS4 Comp  URL  │
+         * │  __  __  ▼   ▼   __  __  │ WS←  SpH  Prev Next SpV   WS→ │
+         * │  __  __  __  __  __  __  │ Side New  Grid Unsp  __    __  │
+         * │           __  __  __     │ Rst  Close Bkmk                │
+         * │  Mirrors tmux: K=prev, L=next, J=hsplit, ;=vsplit         │
+         * └──────────────────────────────────────────────────────────┘
+         */
+        zen_layer {
             bindings = <
-                &none &none &none &none &none &none   &none &none &none &none &none &none
-                &none &none &none &none &none &none   &none &none &none &none &none &none
-                &none &none &none &none &none &none   &none &none &none &none &none &none
-                                  &none &none &none   &none &none &none
+                &none &none &none &none &none &none   &kp LG(LA(N1)) &kp LG(LA(N2)) &kp LG(LA(N3)) &kp LG(LA(N4)) &kp LA(C) &kp LG(L)
+                &none &none &none &none &none &none   &kp LG(LA(LBKT)) &kp LA(LS(H)) &kp LC(LS(TAB)) &kp LC(TAB) &kp LA(V) &kp LG(LA(RBKT))
+                &none &none &none &none &none &none   &kp LA(B) &kp LG(T) &kp LA(G) &kp LA(U) &none &none
+                                  &none &none &none   &kp LG(LS(T)) &kp LG(W) &kp LG(D)
             >;
         };
 
