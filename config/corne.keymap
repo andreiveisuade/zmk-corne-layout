@@ -6,7 +6,7 @@
  *   0 = Base (QWERTY)
  *   1 = Lower (numbers, symbols, brackets)
  *   2 = Raise (F-keys, media, arrows on JKL;, nav, BT)
- *   3 = Zen Browser (tabs, workspaces, splits via S+D combo)
+ *   3 = Zen Browser (tabs, workspaces, splits via X+C combo)
  *   4 = Workspace (AeroSpace switching via K+L combo)
  *   5 = tmux (prefix macros via D+F combo)
  *   6 = AeroSpace (window focus/move via A+S combo)
@@ -15,7 +15,7 @@
  * Combos:
  *   L1 + L2 (thumb keys)  → Right Shift (Karabiner: tap=dead acute, hold+;=ñ)
  *   J + K                 → CapsLock (Karabiner: hold=Hyper, tap=Escape)
- *   S + D (hold)          → Layer 3 (Zen Browser)
+ *   X + C (hold)          → Layer 3 (Zen Browser)
  *   K + L (hold)          → Layer 4 (Workspace)
  *   D + F (hold)          → Layer 5 (tmux)
  *   A + S (hold)          → Layer 6 (AeroSpace)
@@ -233,14 +233,14 @@
             bindings = <&kp CAPSLOCK>;
         };
 
-        /* S + D (hold) → Zen Browser Layer (Layer 3)
+        /* X + C (hold) → Zen Browser Layer (Layer 3)
          * Tabs, workspaces, splits — all right hand
-         * "sd" is rare — moderate timing
+         * "xc" is extremely rare — no position overlap with other combos
          */
         combo_zen {
-            timeout-ms = <80>;
-            require-prior-idle-ms = <150>;
-            key-positions = <14 15>;  // S + D
+            timeout-ms = <60>;
+            require-prior-idle-ms = <200>;
+            key-positions = <26 27>;  // X + C
             bindings = <&mo 3>;
         };
 
@@ -346,7 +346,7 @@
         };
 
         /* ┌──────────────────────────────────────────────────────────┐
-         * │  LAYER 3 — Zen Browser (hold S+D combo)                   │
+         * │  LAYER 3 — Zen Browser (hold X+C combo)                   │
          * │  __  __  __  __  __  __  │ WS1  WS2  WS3  WS4 Comp  URL  │
          * │  __  __  ▼   ▼   __  __  │ WS←  SpH  Prev Next SpV   WS→ │
          * │  __  __  __  __  __  __  │ Side New  Grid Unsp  __    __  │
