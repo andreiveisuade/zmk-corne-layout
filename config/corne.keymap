@@ -37,6 +37,18 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/mouse.h>
 
+/* Mouse speed tuning: faster response, no startup delay */
+&mmv {
+    delay-ms = <0>;
+    time-to-max-speed-ms = <150>;
+    acceleration-exponent = <1>;
+};
+&msc {
+    delay-ms = <0>;
+    time-to-max-speed-ms = <150>;
+    acceleration-exponent = <0>;
+};
+
 / {
     /* ================================================================
      *  TMUX MACROS — each sends Ctrl+A (prefix) then the action key
@@ -190,18 +202,6 @@
             bindings = <&kp BACKSPACE>, <&kp DELETE>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
-    };
-
-    /* Mouse speed tuning: faster response, no startup delay */
-    &mmv {
-        delay-ms = <0>;
-        time-to-max-speed-ms = <150>;
-        acceleration-exponent = <1>;
-    };
-    &msc {
-        delay-ms = <0>;
-        time-to-max-speed-ms = <150>;
-        acceleration-exponent = <0>;
     };
 
     combos {
