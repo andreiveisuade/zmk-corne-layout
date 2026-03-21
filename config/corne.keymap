@@ -190,16 +190,18 @@
             bindings = <&kp BACKSPACE>, <&kp DELETE>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
-        &mmv {
-            delay-ms = <0>;
-            time-to-max-speed-ms = <150>;
-            acceleration-exponent = <1>;
-        };
-        &msc {
-            delay-ms = <0>;
-            time-to-max-speed-ms = <150>;
-            acceleration-exponent = <0>;
-        };
+    };
+
+    /* Mouse speed tuning: faster response, no startup delay */
+    &mmv {
+        delay-ms = <0>;
+        time-to-max-speed-ms = <150>;
+        acceleration-exponent = <1>;
+    };
+    &msc {
+        delay-ms = <0>;
+        time-to-max-speed-ms = <150>;
+        acceleration-exponent = <0>;
     };
 
     combos {
