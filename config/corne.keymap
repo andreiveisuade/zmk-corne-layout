@@ -190,6 +190,16 @@
             bindings = <&kp BACKSPACE>, <&kp DELETE>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
+        &mmv {
+            delay-ms = <0>;
+            time-to-max-speed-ms = <150>;
+            acceleration-exponent = <1>;
+        };
+        &msc {
+            delay-ms = <0>;
+            time-to-max-speed-ms = <150>;
+            acceleration-exponent = <0>;
+        };
     };
 
     combos {
@@ -396,7 +406,7 @@
          */
         mouse_layer {
             bindings = <
-                &none &none &none &none &none &none   &none        &none          &msc SCRL_DOWN &msc SCRL_UP &none           &none
+                &none &none &none &none &none &none   &none        &none          &msc SCRL_UP &msc SCRL_DOWN &none           &none
                 &none &none &none &none &none &none   &none        &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_UP &mmv MOVE_RIGHT &none
                 &none &none &none &none &none &none   &none        &msc SCRL_LEFT &none          &none        &msc SCRL_RIGHT &none
                                   &none &none &none   &mkp MCLK    &mkp LCLK      &mkp RCLK
