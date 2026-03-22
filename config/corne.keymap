@@ -175,6 +175,14 @@
             tap-ms = <30>;
             bindings = <&kp LC(A)>, <&kp R>;
         };
+        // Personal data
+        type_email: type_email {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <30>;
+            bindings = <&kp A>, <&kp N>, <&kp D>, <&kp R>, <&kp E>, <&kp I>, <&kp DOT>, <&kp V>, <&kp E>, <&kp I>, <&kp S>, <&kp DOT>, <&kp N3>, <&kp N6>, <&kp N0>, <&kp AT>, <&kp G>, <&kp M>, <&kp A>, <&kp I>, <&kp L>, <&kp DOT>, <&kp C>, <&kp O>, <&kp M>;
+        };
         // Resurrect
         tmux_save: tmux_save {
             compatible = "zmk,behavior-macro";
@@ -388,7 +396,7 @@
          * │                                                          │
          * │  __  __  __  __  __  __  │  __ Y:cpy U:fzf I:win O:zoom P:pst│
          * │  __  __  __  __  __  __  │  __  J:-  K:prv L:nxt ;:|  ':ren │
-         * │  __  __  __  __  __  __  │  __ M:new N:ses .:re$ /:det rld  │
+         * │  __ Z:mail __  __  __  __ │  __ M:new N:ses .:re$ /:det rld  │
          * │         __  __  __       │  sav   cls   rst                  │
          * └──────────────────────────────────────────────────────────┘
          */
@@ -396,7 +404,7 @@
             bindings = <
                 &none &none &none &none &none &none   &none        &tmux_copy     &tmux_sesslist &tmux_winlist &tmux_zoom    &tmux_paste
                 &none &none &none &none &none &none   &none        &tmux_hsplit   &tmux_prev     &tmux_next   &tmux_vsplit  &tmux_rename
-                &none &none &none &none &none &none   &none        &tmux_new      &tmux_newsess  &tmux_rename_s &tmux_detach &tmux_reload
+                &none &type_email &none &none &none &none   &none        &tmux_new      &tmux_newsess  &tmux_rename_s &tmux_detach &tmux_reload
                                   &none &none &none   &tmux_save   &tmux_close    &tmux_restore
             >;
         };
